@@ -1,12 +1,8 @@
+DirectoryIndex index.php
+
 RewriteEngine On
 
-DirectoryIndex index.php
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 Options -Indexes
-DirectoryIndex index.php
