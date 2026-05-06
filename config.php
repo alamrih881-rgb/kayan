@@ -1,13 +1,16 @@
 <?php
-$host = getenv("MYSQLHOST");
-$dbname = getenv("MYSQLDATABASE");
-$username = getenv("MYSQLUSER");
-$password = getenv("MYSQLPASSWORD");
 
-try {
-    $conn = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("DB Error: " . $e->getMessage());
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
+$db   = getenv('DB_NAME') ?: 'kayan_db';
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("فشل الاتصال بقاعدة البيانات: " . mysqli_connect_error());
 }
+
+mysqli_set_charset($conn, "utf8");
+
 ?>
